@@ -1,0 +1,31 @@
+{
+    "expo": {
+        "name": "OXYGEN",
+        "slug": "oxygen",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./app/assets/icon.png",
+        "userInterfaceStyle": "automatic",
+        "splash": {
+            "image": "./app/assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#1266DC"
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": true,
+            "requireFullScreen": true
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./app/assets/adaptive-icon.png",
+                "backgroundColor": "#111111"
+            }
+        },
+        "web": {
+            "favicon": "./app/assets/favicon.png"
+        }
+    }
+}
