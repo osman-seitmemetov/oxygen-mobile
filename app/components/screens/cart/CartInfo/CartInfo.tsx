@@ -12,7 +12,6 @@ const CartInfo: FC<CartInfoProps> = ({ count }) => {
 		<Section
 		// className={style.info}
 		>
-			{/*это форма для создания заказа*/}
 			{/*Переделать форму оплаты и все шаги*/}
 			<View
 			// action="cart/order"

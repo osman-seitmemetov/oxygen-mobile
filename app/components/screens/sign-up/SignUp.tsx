@@ -17,7 +17,7 @@ import {
 
 const SignUp: FC = () => {
 	const { handleSubmit, control, reset } = useForm<SignUpFormData>({
-		mode: 'onChange'
+		mode: 'onSubmit'
 	})
 
 	const { navigate } = useTypedNavigation()

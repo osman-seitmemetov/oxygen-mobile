@@ -18,7 +18,7 @@ import {
 
 const SignIn: FC = () => {
 	const { handleSubmit, control, reset } = useForm<IAuthFormData>({
-		mode: 'onChange'
+		mode: 'onSubmit'
 	})
 
 	const { user } = useAuth()
