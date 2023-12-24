@@ -21,6 +21,8 @@ const Product: FC = () => {
 
 	const isDiscount = product?.isDiscount && product?.newPrice
 
+	console.log(product)
+
 	return (
 		<Layout>
 			<View style={{ height }}>
