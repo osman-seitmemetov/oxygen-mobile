@@ -17,7 +17,7 @@ const View = styled.View`
 // border-top-left-radius: 10px;
 // border-top-right-radius: 10px;
 
-const MenuItem = styled.Pressable`
+const MenuItem = styled.TouchableOpacity`
 	//align-items: center;
 	//display: flex;
 `

@@ -16,7 +16,6 @@ const Img = styled.Image`
 
 const Title = styled.Text`
 	font-size: 26px;
-	font-weight: 900;
 	margin-bottom: 10px;
 	padding: 0 10px;
 `

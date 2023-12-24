@@ -39,7 +39,9 @@ const Counter: FC<CounterProps> = ({ min, max, changeCountHandler, value }) => {
 			</Styled.MinusButton>
 
 			<Styled.Count>
-				<Text>{count}</Text>
+				<Text style={{ fontFamily: 'Museo Sans Cyrl 500' }}>
+					{count}
+				</Text>
 			</Styled.Count>
 
 			<Styled.PlusButton

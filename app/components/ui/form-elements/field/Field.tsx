@@ -8,6 +8,8 @@ const Field = <T extends Record<string, any>>({
 	control,
 	rules,
 	name,
+	clearErrors,
+	trigger,
 	...rest
 }: IField<T>): JSX.Element => {
 	return (
@@ -17,7 +19,8 @@ const Field = <T extends Record<string, any>>({
 			rules={rules}
 			render={({
 				field: { value, onChange, onBlur },
-				fieldState: { error }
+				fieldState: { error },
+				formState: { touchedFields }
 			}) => (
 				<>
 					<View
@@ -28,6 +31,7 @@ const Field = <T extends Record<string, any>>({
 							autoCapitalize='none'
 							onChangeText={onChange}
 							onBlur={onBlur}
+							onFocus={() => clearErrors(name)}
 							style={{
 								borderColor: error
 									? getColor('error')

@@ -14,7 +14,6 @@ const View = styled.View`
 const Text = styled.Text`
 	color: #000000;
 	font-size: 22px;
-	font-weight: 700;
 	text-align: center;
 `
 

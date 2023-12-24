@@ -1,6 +1,9 @@
 import React, { FC } from 'react'
-import { PrimaryButton, SecondaryButton, Section } from '@/components/ui'
+import { PrimaryButton, Section } from '@/components/ui'
 import { Text, View } from 'react-native'
+import Styled from './cart-info.styles'
+import { declensions } from '@/shared/declensions'
+import { getFont } from '@/shared/fonts'
 
 interface CartInfoProps {
 	count: number
@@ -9,18 +12,21 @@ interface CartInfoProps {
 
 const CartInfo: FC<CartInfoProps> = ({ count }) => {
 	return (
-		<Section
-		// className={style.info}
-		>
-			{/*Переделать форму оплаты и все шаги*/}
+		<Section>
+			<Styled.CartInfoHead>
+				<Styled.Title style={[getFont('Museo Sans Cyrl 700')]}>
+					Ваша корзина
+				</Styled.Title>
+
+				<Styled.Brief style={[getFont('Museo Sans Cyrl 500')]}>
+					{count} {declensions(count, ['Товар', 'Товара', 'Товаров'])}
+				</Styled.Brief>
+			</Styled.CartInfoHead>
+
 			<View
 			// action="cart/order"
 			// className={`${style.form} ${style.result}`}
 			>
-				<PrimaryButton>Оформить заказ</PrimaryButton>
-
-				<SecondaryButton>Использовать промокод</SecondaryButton>
-
 				<View
 				// className={style.form__data}
 				>
@@ -77,11 +83,7 @@ const CartInfo: FC<CartInfoProps> = ({ count }) => {
 				</View>
 			</View>
 
-			<Text
-			// className={style.info__label}
-			>
-				Минимальная сумма заказа: 4 000 тг.
-			</Text>
+			<PrimaryButton>Перейти к оформлению</PrimaryButton>
 		</Section>
 	)
 }

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
-import { PressableProps } from 'react-native'
+import { TouchableOpacityProps } from 'react-native'
 
-export interface IPrimaryButton extends PressableProps {
+export interface IPrimaryButton extends TouchableOpacityProps {
 	children?: ReactNode
 	isLoading?: boolean
 }

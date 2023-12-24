@@ -1,27 +1,34 @@
 import React, { FC } from 'react'
-import { FlatList, View } from 'react-native'
 import { IBanner } from '@/shared/types/banner.interface'
 import CarouselItem from './carousel-item/CarouselItem'
+import { useSafeAreaFrame } from 'react-native-safe-area-context'
+import { FlashList } from '@shopify/flash-list'
 
-const Carousel: FC<{ banners: IBanner[] }> = ({ banners }) => {
+const Carouse: FC<{ banners: IBanner[] }> = ({ banners }) => {
+	const { width } = useSafeAreaFrame()
+	const itemWidth = width - 30
+
+	const renderItem = ({ item }: { item: IBanner }) => (
+		<CarouselItem banner={item} />
+	)
+
+	const keyExtractor = (item: IBanner) => item.id.toString()
+
 	return (
-		<View>
-			<FlatList
-				style={{ marginBottom: 10 }}
-				data={banners}
-				snapToAlignment='start'
-				keyExtractor={item => item.id.toString()}
-				showsHorizontalScrollIndicator={false}
-				horizontal
-				contentContainerStyle={{ paddingLeft: 10 }}
-				renderToHardwareTextureAndroid
-				scrollEventThrottle={16}
-				renderItem={({ item: banner }) => (
-					<CarouselItem banner={banner} />
-				)}
-			/>
-		</View>
+		<FlashList
+			data={banners}
+			snapToAlignment='start'
+			snapToInterval={itemWidth}
+			estimatedItemSize={itemWidth}
+			keyExtractor={keyExtractor}
+			showsHorizontalScrollIndicator={false}
+			horizontal
+			contentContainerStyle={{ paddingLeft: 10, paddingBottom: 10 }}
+			// renderToHardwareTextureAndroid
+			// scrollEventThrottle={2000}
+			renderItem={renderItem}
+		/>
 	)
 }
 
-export default Carousel
+export default Carouse

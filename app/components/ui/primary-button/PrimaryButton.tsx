@@ -9,9 +9,11 @@ const PrimaryButton: FC<IPrimaryButton> = ({
 	...rest
 }) => {
 	return (
-		<Styled.Pressable {...rest}>
-			<Styled.Text>{isLoading ? <Loader /> : children}</Styled.Text>
-		</Styled.Pressable>
+		<Styled.Button activeOpacity={0.7} {...rest}>
+			<Styled.Text style={{ fontFamily: 'Museo Sans Cyrl 700' }}>
+				{isLoading ? <Loader /> : children}
+			</Styled.Text>
+		</Styled.Button>
 	)
 }
 

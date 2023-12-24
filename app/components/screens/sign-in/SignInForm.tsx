@@ -1,14 +1,25 @@
 import { FC } from 'react'
 import { IAuthFormData } from '@/shared/types/auth.interface'
-import { Control } from 'react-hook-form'
+import { Control, FieldPath, TriggerConfig } from 'react-hook-form'
 import { validEmail } from '@/shared/validEmail'
 import { Field, FieldGroup, PasswordField } from '@/components/ui'
 
 interface AuthFormProps {
 	control: Control<IAuthFormData>
+	clearErrors: (
+		name?:
+			| FieldPath<IAuthFormData>
+			| FieldPath<IAuthFormData>[]
+			| `root.${string}`
+			| 'root'
+	) => void
+	trigger: (
+		name?: FieldPath<IAuthFormData> | FieldPath<IAuthFormData>[],
+		options?: TriggerConfig
+	) => Promise<boolean>
 }
 
-const SignInForm: FC<AuthFormProps> = ({ control }) => {
+const SignInForm: FC<AuthFormProps> = ({ control, clearErrors, trigger }) => {
 	return (
 		<>
 			<FieldGroup label='Email'>
@@ -16,6 +27,8 @@ const SignInForm: FC<AuthFormProps> = ({ control }) => {
 					control={control}
 					name='email'
 					placeholder='Введите email'
+					clearErrors={clearErrors}
+					trigger={trigger}
 					rules={{
 						pattern: {
 							value: validEmail,
@@ -33,6 +46,7 @@ const SignInForm: FC<AuthFormProps> = ({ control }) => {
 					control={control}
 					name='password'
 					placeholder='Введите пароль'
+					clearErrors={clearErrors}
 					rules={{
 						required: 'Это поле обязательное',
 						minLength: {

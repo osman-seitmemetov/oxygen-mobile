@@ -1,5 +1,7 @@
 const colors = {
 	main: '#1266dc',
+	azureRadiance: '#00a6ff',
+	dodgerBlue: 'rgba(85,188,255,0.5)',
 	error: '#FF3D3D',
 	wistful: '#A7AED2',
 	mystic: '#e2e5ee',
@@ -8,6 +10,7 @@ const colors = {
 	crimson: '#DA1B3F',
 	red: '#f34161',
 	mineShaft: '#303030',
+	mineSha: '#232323',
 	alto: '#d6d5d5',
 	green: '#5bcb73'
 }

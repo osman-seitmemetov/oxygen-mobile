@@ -2,13 +2,19 @@ import styled from 'styled-components/native'
 import { getColor } from '@/styles/colors'
 
 const Card = styled.Pressable`
-	height: 250px;
 	flex-direction: column;
 	justify-content: space-between;
+	margin-bottom: 8px;
+	background-color: #2f2f2f;
+	border-radius: 10px;
 `
 
 const Top = styled.View`
 	position: relative;
+`
+
+const Content = styled.View`
+	padding: 5px;
 `
 
 const Img = styled.Image`
@@ -19,21 +25,21 @@ const Img = styled.Image`
 `
 
 const Title = styled.Text`
-	font-weight: 700;
 	color: ${getColor('mineShaft')};
-	font-size: 15px;
+	font-size: 16px;
 	margin-bottom: 5px;
+	margin-top: 5px;
 `
 
 const Available = styled.Text`
 	color: ${getColor('main')};
 	margin-bottom: 5px;
-	font-size: 10px;
+	font-size: 12px;
 `
 
 const Weight = styled.Text`
 	margin-bottom: 5px;
-	font-size: 10px;
+	font-size: 12px;
 `
 
 const Bottom = styled.View`
@@ -41,25 +47,34 @@ const Bottom = styled.View`
 	align-items: flex-end;
 `
 
+const PriceRow = styled.View`
+	flex-direction: row;
+	align-items: center;
+	//margin-top: 5px;
+`
+
 const Price = styled.View`
-	display: flex;
-	flex-direction: column;
-	padding-bottom: 5px;
-	font-weight: 700;
-	margin-bottom: 0;
-	font-size: 14px;
+	border-radius: 6px;
+	background-color: rgba(66, 231, 103, 0.3);
+	padding: 5px;
 `
 
-const PriceOld = styled.Text`
-	font-weight: 400;
-	text-decoration-line: line-through;
-	color: ${getColor('alto')};
-	font-size: 10px;
+const PriceText = styled.Text`
+	font-size: 16px;
+	color: ${getColor('green')};
 `
 
-const PriceNew = styled.Text`
-	color: ${getColor('error')};
-	font-weight: 700;
+const PriceDiscount = styled.View`
+	border-radius: 6px;
+	background-color: rgba(243, 65, 97, 0.3);
+	padding: 3px;
+	margin-left: 5px;
+`
+
+const PriceTextDiscount = styled.Text`
+	font-size: 12px;
+	color: ${getColor('red')};
+	text-decoration: line-through;
 `
 
 export default {
@@ -71,6 +86,9 @@ export default {
 	Weight,
 	Bottom,
 	Price,
-	PriceOld,
-	PriceNew
+	PriceDiscount,
+	PriceTextDiscount,
+	PriceRow,
+	PriceText,
+	Content
 }

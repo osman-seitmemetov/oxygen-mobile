@@ -11,6 +11,7 @@ import { Section } from '@/components/ui'
 import { Ionicons } from '@expo/vector-icons'
 import Counter from '@/components/ui/counter/Counter'
 import { useCartItem } from '@/components/screens/cart/cart-item/useCartItem'
+import { getFont } from '@/shared/fonts'
 
 const CartItem: FC<CartItemProps> = ({ cartProduct }) => {
 	const { navigate } = useTypedNavigation()
@@ -43,20 +44,24 @@ const CartItem: FC<CartItemProps> = ({ cartProduct }) => {
 				<Styled.Data>
 					<Styled.PriceRow>
 						<Styled.Price>
-							<Styled.PriceText>
+							<Styled.PriceText
+								style={[getFont('Museo Sans Cyrl 700')]}
+							>
 								{isDiscount
 									? `${addThousandSeparators(
 											cartProduct.product.newPrice
-									  )} ₽`
+										)} ₽`
 									: `${addThousandSeparators(
 											cartProduct.product.price
-									  )} ₽`}
+										)} ₽`}
 							</Styled.PriceText>
 						</Styled.Price>
 
 						{cartProduct.product.isDiscount && (
 							<Styled.PriceDiscount>
-								<Styled.PriceTextDiscount>
+								<Styled.PriceTextDiscount
+									style={[getFont('Museo Sans Cyrl 700')]}
+								>
 									{addThousandSeparators(
 										cartProduct.product.price
 									)}{' '}
@@ -67,10 +72,12 @@ const CartItem: FC<CartItemProps> = ({ cartProduct }) => {
 					</Styled.PriceRow>
 
 					<Pressable>
-						<Styled.Title>{cartProduct.product.name}</Styled.Title>
+						<Styled.Title style={[getFont('Museo Sans Cyrl 700')]}>
+							{cartProduct.product.name}
+						</Styled.Title>
 					</Pressable>
 
-					<Styled.Count>
+					<Styled.Count style={[getFont('Museo Sans Cyrl 300')]}>
 						Осталось: {cartProduct.product.count} шт.
 					</Styled.Count>
 				</Styled.Data>

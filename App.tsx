@@ -7,6 +7,8 @@ import React, { useContext } from 'react'
 import ThemeProvider, { ThemeContext } from '@/providers/theme/ThemeProvider'
 import StatusBarComponent from '@/components/ui/layout/status-bar/StatusBarComponent'
 import { DARK_COLORS, LIGHT_COLORS } from '@/styles/colors'
+import { useFonts } from 'expo-font'
+// import { SheetProvider } from 'react-native-actions-sheet'
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -18,6 +20,15 @@ const queryClient = new QueryClient({
 
 export default function App() {
 	const { isDark } = useContext(ThemeContext)
+
+	const [loaded] = useFonts({
+		'Museo Sans Cyrl 300': require('./app/assets/fonts/Museo Sans Cyrl 300.ttf'),
+		'Museo Sans Cyrl 500': require('./app/assets/fonts/Museo Sans Cyrl 500.ttf'),
+		'Museo Sans Cyrl 700': require('./app/assets/fonts/Museo Sans Cyrl 700.ttf'),
+		'Museo Sans Cyrl 900': require('./app/assets/fonts/Museo Sans Cyrl 900.ttf')
+	})
+
+	if (!loaded) return
 
 	return (
 		<QueryClientProvider client={queryClient}>

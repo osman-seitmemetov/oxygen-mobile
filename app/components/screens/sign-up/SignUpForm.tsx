@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { SignUpFormData } from '@/shared/types/auth.interface'
-import { Control } from 'react-hook-form'
+import { Control, FieldPath } from 'react-hook-form'
 import { validEmail } from '@/shared/validEmail'
 import { genders } from '@/shared/genders'
 import {
@@ -13,9 +13,16 @@ import {
 
 interface AuthFormProps {
 	control: Control<SignUpFormData>
+	clearErrors: (
+		name?:
+			| FieldPath<SignUpFormData>
+			| FieldPath<SignUpFormData>[]
+			| `root.${string}`
+			| 'root'
+	) => void
 }
 
-const SignUpForm: FC<AuthFormProps> = ({ control }) => {
+const SignUpForm: FC<AuthFormProps> = ({ control, clearErrors }) => {
 	return (
 		<>
 			<FieldGroup label='Имя'>
@@ -23,6 +30,7 @@ const SignUpForm: FC<AuthFormProps> = ({ control }) => {
 					control={control}
 					name='firstname'
 					placeholder='Введите имя'
+					clearErrors={clearErrors}
 					rules={{
 						required: 'Это поле обязательное'
 					}}
@@ -34,6 +42,7 @@ const SignUpForm: FC<AuthFormProps> = ({ control }) => {
 					control={control}
 					name='lastname'
 					placeholder='Введите фамилию'
+					clearErrors={clearErrors}
 					rules={{
 						required: 'Это поле обязательное'
 					}}
@@ -45,6 +54,7 @@ const SignUpForm: FC<AuthFormProps> = ({ control }) => {
 					control={control}
 					name='email'
 					placeholder='Введите email'
+					clearErrors={clearErrors}
 					rules={{
 						pattern: {
 							value: validEmail,
@@ -94,6 +104,7 @@ const SignUpForm: FC<AuthFormProps> = ({ control }) => {
 					control={control}
 					name='phone'
 					placeholder='Введите номер телефона'
+					clearErrors={clearErrors}
 				/>
 			</FieldGroup>
 		</>

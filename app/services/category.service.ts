@@ -1,6 +1,7 @@
 import { request } from '@/services/api/request.api'
 import { getCategoriesURL } from '@/config/api.config'
 import { ICategory, ICategoryFields } from '@/shared/types/category.interface'
+import { IProductsFilterData } from '@/components/screens/category/category.interface'
 
 export const CategoryService = {
 	async getAll(params?: { term?: string }) {
@@ -11,11 +12,12 @@ export const CategoryService = {
 		})
 	},
 
-	// async getChildrenById(id: string) {
-	// 	return await axios.get<IProductsFilterData>(
-	// 		`http://localhost:5000/api/category/children/${id}`
-	// 	)
-	// },
+	async getChildrenById(id: string) {
+		return await request<IProductsFilterData>({
+			url: getCategoriesURL(`/children/${id}`),
+			method: 'GET'
+		})
+	},
 
 	async getById(id: string) {
 		return await request<ICategoryFields>({

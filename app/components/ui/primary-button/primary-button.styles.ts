@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import { getColor } from '@/styles/colors'
 
-const Pressable = styled.Pressable`
+const Button = styled.TouchableOpacity`
 	justify-content: center;
 	background-color: ${getColor('main')};
 	border-radius: 10px;
@@ -12,11 +12,10 @@ const Pressable = styled.Pressable`
 `
 
 const Text = styled.Text`
-	font-weight: 700;
 	font-size: 18px;
 	color: #ffffff;
 	text-align: center;
 	text-decoration: none;
 `
 
-export default { Pressable, Text }
+export default { Button, Text }

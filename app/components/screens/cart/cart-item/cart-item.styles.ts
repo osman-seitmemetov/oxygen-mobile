@@ -11,17 +11,14 @@ const Data = styled.View`
 
 const Title = styled.Text`
 	font-size: 18px;
-	font-weight: 700;
-	line-height: 22px;
 	color: ${getColor('mineShaft')};
-	width: 100%;
 `
 
 const Count = styled.Text`
 	font-size: 14px;
-	font-weight: 300;
 	color: ${getColor('mineShaft')};
 	width: 100%;
+	margin-top: 5px;
 `
 
 const PriceRow = styled.View`
@@ -39,7 +36,6 @@ const Price = styled.View`
 const PriceText = styled.Text`
 	font-size: 18px;
 	color: ${getColor('green')};
-	font-weight: 700;
 `
 
 const PriceDiscount = styled.View`
@@ -80,6 +76,10 @@ const DeleteButton = styled.Pressable`
 	border-radius: 8px;
 `
 
+const Empty = styled.View`
+	justify-content: center;
+`
+
 const image = {
 	marginRight: 10,
 	width: 100,
@@ -100,6 +100,7 @@ export default {
 	Info,
 	Actions,
 	DeleteButton,
-	ActionsLeft
+	ActionsLeft,
+	Empty
 }
 export const styles = { image }

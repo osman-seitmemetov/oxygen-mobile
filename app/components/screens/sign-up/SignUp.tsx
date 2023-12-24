@@ -16,9 +16,10 @@ import {
 } from '@/components/ui'
 
 const SignUp: FC = () => {
-	const { handleSubmit, control, reset } = useForm<SignUpFormData>({
-		mode: 'onSubmit'
-	})
+	const { handleSubmit, control, reset, clearErrors } =
+		useForm<SignUpFormData>({
+			mode: 'onSubmit'
+		})
 
 	const { navigate } = useTypedNavigation()
 
@@ -40,7 +41,7 @@ const SignUp: FC = () => {
 				>
 					<View>{isLoading ? <Loader /> : <></>}</View>
 
-					<SignUpForm control={control} />
+					<SignUpForm clearErrors={clearErrors} control={control} />
 
 					<PrimaryButton onPress={handleSubmit(onSubmit)}>
 						Зарегистрироваться

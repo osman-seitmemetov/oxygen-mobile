@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react'
 import { View } from 'react-native'
-import { Layout, Loader, Section } from '@/components/ui'
+import { Layout, Section } from '@/components/ui'
 import { useProduct } from './useProduct'
 import { getMediaSource } from '@/shared/getMediaSource'
 import Styled from './product.styles'
@@ -11,6 +11,8 @@ import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import RenderHTML from 'react-native-render-html'
 import ProductCartButton from '@/components/screens/product/product-cart-button/ProductCartButton'
 import { addThousandSeparators } from '@/shared/addThousandSeparators'
+import { getFont } from '@/shared/fonts'
+import ProductLoader from '@/components/screens/product/product-loader/ProductLoader'
 
 const Product: FC = () => {
 	const { isDark } = useContext(ThemeContext)
@@ -24,9 +26,14 @@ const Product: FC = () => {
 			<View style={{ height }}>
 				<ProductHeader productId={product?.id} />
 
-				<CustomScrollView style={{ position: 'relative' }}>
+				<CustomScrollView
+					style={{
+						position: 'relative',
+						height: 300
+					}}
+				>
 					{isProductLoading ? (
-						<Loader />
+						<ProductLoader />
 					) : (
 						product && (
 							<>
@@ -41,7 +48,11 @@ const Product: FC = () => {
 										source={getMediaSource(product.img)}
 									/>
 
-									<Styled.Title>{product.name}</Styled.Title>
+									<Styled.Title
+										style={[getFont('Museo Sans Cyrl 900')]}
+									>
+										{product.name}
+									</Styled.Title>
 
 									<Styled.PriceRow>
 										<Styled.Price>
@@ -49,10 +60,10 @@ const Product: FC = () => {
 												{isDiscount
 													? `${addThousandSeparators(
 															product.newPrice
-													  )} ₽`
+														)} ₽`
 													: `${addThousandSeparators(
 															product.price
-													  )} ₽`}
+														)} ₽`}
 											</Styled.PriceText>
 										</Styled.Price>
 
@@ -81,6 +92,9 @@ const Product: FC = () => {
 								>
 									<RenderHTML
 										contentWidth={width}
+										baseStyle={{
+											fontFamily: 'Museo Sans Cyrl 300'
+										}}
 										source={{
 											html: product.description.includes(
 												'<p>'
@@ -105,7 +119,8 @@ const tagsStyles = {
 	body: {
 		color: 'white',
 		fontSize: 17,
-		fontWeight: '400'
+		fontWeight: '400',
+		fontFamily: 'Museo Sans Cyrl 300'
 	}
 }
 

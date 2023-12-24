@@ -14,17 +14,17 @@ export const useMovieItemAnimation = (index: number, style?: ViewStyle) => {
 
 	useEffect(() => {
 		scale.value = withDelay(
-			100 + index * 260,
+			1 + index * 100,
 			withTiming(1, {
-				duration: 600,
+				duration: 200,
 				easing: Easing.bezier(0.5, 0.3, 0.5, 1)
 			})
 		)
 
 		opacity.value = withDelay(
-			100 + index * 260,
+			1 + index * 100,
 			withTiming(10, {
-				duration: 600,
+				duration: 200,
 				easing: Easing.bezier(0.5, 0.3, 0.5, 1)
 			})
 		)

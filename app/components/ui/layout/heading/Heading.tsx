@@ -28,7 +28,12 @@ const Heading: FC<HeadingProps> = ({ title, isHasBack }) => {
 				</Pressable>
 			)}
 
-			<Styled.Text numberOfLines={1}>{title}</Styled.Text>
+			<Styled.Text
+				style={{ fontFamily: 'Museo Sans Cyrl 700' }}
+				numberOfLines={1}
+			>
+				{title}
+			</Styled.Text>
 
 			{isHasBack && (
 				<MaterialIcons

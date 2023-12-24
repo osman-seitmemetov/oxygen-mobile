@@ -9,6 +9,7 @@ import {
 } from 'react-native-safe-area-context'
 import ProductCard from '@/components/ui/product-card/ProductCard'
 import CustomScrollView from '@/components/ui/layout/custom-scroll-view/CustomScrollView'
+import FavoritesEmpty from '@/components/screens/favorites/FavoritesEmpty'
 
 const Favorites: FC = () => {
 	const { favorites, isFavoritesLoading } = useFavorites()
@@ -25,29 +26,30 @@ const Favorites: FC = () => {
 					height: itemsHeight
 				}}
 			>
-				<Section>
-					<View
-						style={{
-							flexWrap: 'wrap',
-							justifyContent: 'space-between',
-							flexDirection: 'row'
-						}}
-					>
-						{isFavoritesLoading ? (
-							<Loader />
-						) : (
-							favorites &&
-							favorites.items.map((favorite, index) => (
+				{isFavoritesLoading ? (
+					<Loader />
+				) : favorites && favorites.items.length > 0 ? (
+					favorites.items.map((favorite, index) => (
+						<Section>
+							<View
+								style={{
+									flexWrap: 'wrap',
+									justifyContent: 'space-between',
+									flexDirection: 'row'
+								}}
+							>
 								<ProductCard
 									index={index}
 									style={{ width: '49%' }}
 									product={favorite.product}
 									key={favorite.id}
 								/>
-							))
-						)}
-					</View>
-				</Section>
+							</View>
+						</Section>
+					))
+				) : (
+					<FavoritesEmpty />
+				)}
 			</CustomScrollView>
 		</Layout>
 	)

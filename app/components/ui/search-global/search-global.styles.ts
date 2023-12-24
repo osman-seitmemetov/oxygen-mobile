@@ -14,6 +14,7 @@ const View = styled.View`
 `
 
 const TextInput = styled.TextInput`
+	width: 100%;
 	margin-left: 5px;
 `
 

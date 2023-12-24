@@ -4,7 +4,6 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { IAuthFormData } from '@/shared/types/auth.interface'
 import SignInForm from './SignInForm'
 import { useSignIn } from './useSignIn'
-import { useAuth } from '@/hooks/useAuth'
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 import {
 	DismissKeyboard,
@@ -17,18 +16,17 @@ import {
 } from '@/components/ui'
 
 const SignIn: FC = () => {
-	const { handleSubmit, control, reset } = useForm<IAuthFormData>({
-		mode: 'onSubmit'
-	})
-
-	const { user } = useAuth()
-	console.log('user', user)
+	const { handleSubmit, control, reset, clearErrors, trigger } =
+		useForm<IAuthFormData>({
+			mode: 'onSubmit'
+		})
 
 	const { isLoading, signInSync } = useSignIn(reset)
 
 	const { navigate } = useTypedNavigation()
 
 	const onSubmit: SubmitHandler<IAuthFormData> = data => {
+		console.log(data)
 		signInSync(data)
 	}
 
@@ -40,7 +38,11 @@ const SignIn: FC = () => {
 				<View style={{ paddingHorizontal: 10 }}>
 					<View>{isLoading ? <Loader /> : <></>}</View>
 
-					<SignInForm control={control} />
+					<SignInForm
+						trigger={trigger}
+						clearErrors={clearErrors}
+						control={control}
+					/>
 
 					<PrimaryButton onPress={handleSubmit(onSubmit)}>
 						Войти

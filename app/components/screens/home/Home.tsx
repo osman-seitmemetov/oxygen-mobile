@@ -10,7 +10,7 @@ import {
 	Section
 } from '@/components/ui'
 import CarouselAnimated from '@/components/screens/home/carousel-animated/CarouselAnimated'
-import Carousel from '@/components/screens/home/carousel/Carousel'
+import Carouse from '@/components/screens/home/carousel/Carousel'
 import CustomScrollView from '@/components/ui/layout/custom-scroll-view/CustomScrollView'
 import ProductCard from '@/components/ui/product-card/ProductCard'
 
@@ -31,7 +31,7 @@ const Home: FC = () => {
 							Platform.OS === 'ios' ? (
 								<CarouselAnimated banners={banners} />
 							) : (
-								<Carousel banners={banners} />
+								<Carouse banners={banners} />
 							)
 						) : (
 							''
@@ -109,24 +109,6 @@ const Home: FC = () => {
 							)}
 						</View>
 					</Section>
-
-					{/*<ProductCarousel*/}
-					{/*	title='Суперхиты'*/}
-					{/*	products={products || []}*/}
-					{/*	isLoading={isProductsLoading}*/}
-					{/*/>*/}
-
-					{/*<ProductCarousel*/}
-					{/*	title='Лучшие предложения'*/}
-					{/*	products={products || []}*/}
-					{/*	isLoading={isProductsLoading}*/}
-					{/*/>*/}
-
-					{/*<ProductCarousel*/}
-					{/*	title='Новинки'*/}
-					{/*	products={products || []}*/}
-					{/*	isLoading={isProductsLoading}*/}
-					{/*/>*/}
 				</CustomScrollView>
 			</DismissKeyboard>
 		</Layout>

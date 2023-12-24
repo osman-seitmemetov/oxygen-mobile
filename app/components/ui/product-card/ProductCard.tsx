@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Pressable, Text, ViewStyle } from 'react-native'
+import { Pressable, ViewStyle } from 'react-native'
 import { getMediaSource } from '@/shared/getMediaSource'
 import Styled from './product-card.styles'
 import { IProduct } from '@/shared/types/product.interface'
@@ -7,6 +7,7 @@ import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 import FavoriteButton from './favorite-button/FavoriteButton'
 import { useMovieItemAnimation } from '@/hooks/useCardAnimation'
 import Animated from 'react-native-reanimated'
+import { addThousandSeparators } from '@/shared/addThousandSeparators'
 
 interface ProductCardProps {
 	style?: ViewStyle
@@ -20,6 +21,8 @@ const ProductCard: FC<ProductCardProps> = ({ product, index, style }) => {
 	const { navigate } = useTypedNavigation()
 	const { styleAnimation } = useMovieItemAnimation(index, style)
 
+	const isDiscount = product?.isDiscount && product?.newPrice
+
 	return (
 		<ReanimatedPressable style={styleAnimation}>
 			<Styled.Card
@@ -32,7 +35,7 @@ const ProductCard: FC<ProductCardProps> = ({ product, index, style }) => {
 			>
 				<Styled.Top>
 					<FavoriteButton
-						style={{ position: 'absolute', top: 10, left: 10 }}
+						style={{ position: 'absolute', top: 5, left: 5 }}
 						isSmall
 						productId={product.id}
 					/>
@@ -44,32 +47,56 @@ const ProductCard: FC<ProductCardProps> = ({ product, index, style }) => {
 						height={50}
 					/>
 
-					<Styled.Title>{product.name}</Styled.Title>
+					<Styled.Content>
+						<Styled.PriceRow>
+							<Styled.Price>
+								<Styled.PriceText
+									style={{
+										fontFamily: 'Museo Sans Cyrl 700'
+									}}
+								>
+									{isDiscount
+										? `${addThousandSeparators(
+												product.newPrice
+											)} ₽`
+										: `${addThousandSeparators(
+												product.price
+											)} ₽`}
+								</Styled.PriceText>
+							</Styled.Price>
 
-					<Styled.Available>
-						В наличии: {product.count} шт.
-					</Styled.Available>
+							{product.isDiscount && (
+								<Styled.PriceDiscount>
+									<Styled.PriceTextDiscount
+										style={{
+											fontFamily: 'Museo Sans Cyrl 500'
+										}}
+									>
+										{addThousandSeparators(product.price)} ₽
+									</Styled.PriceTextDiscount>
+								</Styled.PriceDiscount>
+							)}
+						</Styled.PriceRow>
 
-					<Styled.Weight>Вес: 130гр</Styled.Weight>
+						<Styled.Title
+							style={{ fontFamily: 'Museo Sans Cyrl 700' }}
+						>
+							{product.name}
+						</Styled.Title>
+
+						<Styled.Available
+							style={{ fontFamily: 'Museo Sans Cyrl 500' }}
+						>
+							В наличии: {product.count} шт.
+						</Styled.Available>
+
+						<Styled.Weight
+							style={{ fontFamily: 'Museo Sans Cyrl 500' }}
+						>
+							Вес: 130гр
+						</Styled.Weight>
+					</Styled.Content>
 				</Styled.Top>
-
-				<Styled.Bottom>
-					<Styled.Price>
-						{product.isDiscount ? (
-							<>
-								<Styled.PriceOld>
-									{product.price} руб.
-								</Styled.PriceOld>
-
-								<Styled.PriceNew>
-									{product.newPrice} руб.
-								</Styled.PriceNew>
-							</>
-						) : (
-							<Text>{product.price} руб.</Text>
-						)}
-					</Styled.Price>
-				</Styled.Bottom>
 			</Styled.Card>
 		</ReanimatedPressable>
 	)

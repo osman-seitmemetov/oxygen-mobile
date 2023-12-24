@@ -1,31 +1,39 @@
 {
-    "expo": {
-        "name": "OXYGEN",
-        "slug": "oxygen",
-        "version": "1.0.0",
-        "orientation": "portrait",
-        "icon": "./app/assets/icon.png",
-        "userInterfaceStyle": "automatic",
-        "splash": {
-            "image": "./app/assets/splash.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#1266DC"
-        },
-        "assetBundlePatterns": [
-            "**/*"
-        ],
-        "ios": {
-            "supportsTablet": true,
-            "requireFullScreen": true
-        },
-        "android": {
-            "adaptiveIcon": {
-                "foregroundImage": "./app/assets/adaptive-icon.png",
-                "backgroundColor": "#111111"
-            }
-        },
-        "web": {
-            "favicon": "./app/assets/favicon.png"
-        }
+  "expo": {
+    "name": "OXYGEN",
+    "slug": "oxygen",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./app/assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./app/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#238AEA"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "requireFullScreen": true,
+      "userInterfaceStyle": "automatic"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./app/assets/adaptive-icon.png",
+        "backgroundColor": "#238AEA"
+      },
+      "userInterfaceStyle": "automatic",
+      "package": "com.osman_s63.oxygen"
+    },
+    "web": {
+      "favicon": "./app/assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "79a5128e-51cd-41c1-be2b-a90a1b5201fa"
+      }
     }
+  }
 }

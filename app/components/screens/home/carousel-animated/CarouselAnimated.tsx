@@ -26,6 +26,7 @@ const CarouselAnimated: FC<{ banners: IBanner[] }> = ({ banners }) => {
 				scrollEventThrottle={16}
 				snapToInterval={ITEM_SIZE}
 				snapToAlignment='start'
+				initialNumToRender={1}
 				decelerationRate={Platform.OS === 'ios' ? 0 : 0.98}
 				onScroll={Animated.event(
 					[{ nativeEvent: { contentOffset: { x: scrollX } } }],

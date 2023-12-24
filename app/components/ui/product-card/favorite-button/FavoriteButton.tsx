@@ -2,9 +2,9 @@ import React, { FC } from 'react'
 import { Pressable, View, ViewStyle } from 'react-native'
 import { useFavoriteAnimation } from './useFavoriteAnimation'
 import Animated, { withSpring } from 'react-native-reanimated'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { getColor } from '@/styles/colors'
 import { useFavorite } from '@/components/ui/product-card/favorite-button/useFavorite'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 interface FavoriteButtonProps {
 	productId: number

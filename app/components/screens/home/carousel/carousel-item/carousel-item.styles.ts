@@ -1,11 +1,12 @@
 import styled from 'styled-components/native'
 import { ITEM_SIZE } from './carousel-item.constants'
+import { getColor } from '@/styles/colors'
 
 const Banner = styled.View`
 	border-radius: 10px;
 	overflow: hidden;
 	box-shadow: 0 4px 10px rgba(115, 121, 140, 0.15);
-	height: 280px;
+	//height: 280px;
 	width: ${ITEM_SIZE}px;
 	margin-right: 10px;
 `
@@ -40,10 +41,20 @@ const Text = styled.Text`
 
 const Image = styled.Image`
 	width: 100%;
-	height: 140px;
+	height: 150px;
 	object-fit: cover;
 	max-height: 50%;
 	padding: 15px;
 `
 
+const image = {
+	marginRight: 10,
+	width: '100%',
+	height: 70,
+	borderRadius: 10,
+	backgroundColor: getColor('mineShaft')
+}
+
 export default { Banner, USP, Title, Text, Image }
+
+export const styles = { image }

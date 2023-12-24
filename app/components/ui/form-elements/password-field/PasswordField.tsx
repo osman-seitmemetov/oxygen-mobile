@@ -10,6 +10,7 @@ const PasswordField = <T extends Record<string, any>>({
 	control,
 	rules,
 	name,
+	clearErrors,
 	...rest
 }: IField<T>): JSX.Element => {
 	const [isVisible, setIsVisible] = useState<boolean>(false)
@@ -35,6 +36,7 @@ const PasswordField = <T extends Record<string, any>>({
 							autoCapitalize='none'
 							onChangeText={onChange}
 							onBlur={onBlur}
+							onFocus={() => clearErrors(name)}
 							style={{
 								borderColor: error
 									? getColor('error')
