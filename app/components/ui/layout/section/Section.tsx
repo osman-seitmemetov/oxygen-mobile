@@ -2,6 +2,7 @@ import { FC, ReactNode, useContext } from 'react'
 import Styled from './section.styles'
 import { ViewStyle } from 'react-native'
 import { ThemeContext } from '@/providers/theme/ThemeProvider'
+import { getFont } from '@/shared/fonts'
 
 interface BottomMenuProps {
 	children?: ReactNode
@@ -31,7 +32,11 @@ const Section: FC<BottomMenuProps> = ({
 				backgroundColor: isDark ? 'rgb(28, 28, 30)' : '#fff'
 			}}
 		>
-			{title && <Styled.Title>{title}</Styled.Title>}
+			{title && (
+				<Styled.Title style={[getFont('Museo Sans Cyrl 700')]}>
+					{title}
+				</Styled.Title>
+			)}
 			{children}
 		</Styled.Section>
 	)

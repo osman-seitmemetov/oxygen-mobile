@@ -7,6 +7,7 @@ const Card = styled.Pressable`
 	margin-bottom: 8px;
 	background-color: #2f2f2f;
 	border-radius: 10px;
+	flex: 1;
 `
 
 const Top = styled.View`

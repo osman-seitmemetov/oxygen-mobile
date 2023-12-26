@@ -28,12 +28,7 @@ const Product: FC = () => {
 			<View style={{ height }}>
 				<ProductHeader productId={product?.id} />
 
-				<CustomScrollView
-					style={{
-						position: 'relative',
-						height: 300
-					}}
-				>
+				<CustomScrollView>
 					{isProductLoading ? (
 						<ProductLoader />
 					) : (
@@ -58,7 +53,13 @@ const Product: FC = () => {
 
 									<Styled.PriceRow>
 										<Styled.Price>
-											<Styled.PriceText>
+											<Styled.PriceText
+												style={[
+													getFont(
+														'Museo Sans Cyrl 700'
+													)
+												]}
+											>
 												{isDiscount
 													? `${addThousandSeparators(
 															product.newPrice
@@ -71,7 +72,13 @@ const Product: FC = () => {
 
 										{product.isDiscount && (
 											<Styled.PriceDiscount>
-												<Styled.PriceTextDiscount>
+												<Styled.PriceTextDiscount
+													style={[
+														getFont(
+															'Museo Sans Cyrl 500'
+														)
+													]}
+												>
 													{addThousandSeparators(
 														product.price
 													)}{' '}

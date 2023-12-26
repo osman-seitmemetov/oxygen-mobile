@@ -15,10 +15,10 @@ const Navigation: FC = () => {
 	const navRef = useNavigationContainerRef()
 
 	useEffect(() => {
-		setCurrentRoute(navRef.getCurrentRoute?.name)
+		setCurrentRoute(navRef.getCurrentRoute()?.name)
 
 		const listener = navRef.addListener('state', () =>
-			setCurrentRoute(navRef.getCurrentRoute?.name)
+			setCurrentRoute(navRef.getCurrentRoute()?.name)
 		)
 
 		return () => {
@@ -33,6 +33,7 @@ const Navigation: FC = () => {
 			<NavigationContainer ref={navRef}>
 				<PrivateNavigator />
 			</NavigationContainer>
+
 			<BottomMenu nav={navRef.navigate} currentRoute={currentRoute} />
 		</>
 	)

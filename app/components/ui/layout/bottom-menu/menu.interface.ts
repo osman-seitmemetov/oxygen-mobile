@@ -1,8 +1,25 @@
-import { TypeFeatherIconNames } from '@/shared/types/icon.types'
+import {
+	TypeAntDesignNames,
+	TypeFeatherIconNames,
+	TypeFontistoNames,
+	TypeIoniconsNames,
+	TypeMaterialCommunityIconNames
+} from '@/shared/types/icon.types'
 import { TypeRootStackParamList } from '@/navigation/navigation.types'
 
 export interface IMenuItem {
-	iconName: TypeFeatherIconNames
+	iconPack:
+		| 'Ionicons'
+		| 'Feather'
+		| 'AntDesign'
+		| 'Fontisto'
+		| 'MaterialCommunityIcons'
+	iconName:
+		| TypeFeatherIconNames
+		| TypeIoniconsNames
+		| TypeAntDesignNames
+		| TypeFontistoNames
+		| TypeMaterialCommunityIconNames
 	path: keyof TypeRootStackParamList
 }
 

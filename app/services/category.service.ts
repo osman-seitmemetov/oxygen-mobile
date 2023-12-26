@@ -2,6 +2,7 @@ import { request } from '@/services/api/request.api'
 import { getCategoriesURL } from '@/config/api.config'
 import { ICategory, ICategoryFields } from '@/shared/types/category.interface'
 import { IProductsFilterData } from '@/components/screens/category/category.interface'
+import { ICatalogItem } from '@/shared/types/catalog.types'
 
 export const CategoryService = {
 	async getAll(params?: { term?: string }) {
@@ -22,6 +23,13 @@ export const CategoryService = {
 	async getById(id: string) {
 		return await request<ICategoryFields>({
 			url: getCategoriesURL(`/${id}`),
+			method: 'GET'
+		})
+	},
+
+	async getCatalog() {
+		return await request<ICatalogItem[]>({
+			url: getCategoriesURL(`/catalog`),
 			method: 'GET'
 		})
 	}

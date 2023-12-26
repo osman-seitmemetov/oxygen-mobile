@@ -2,23 +2,28 @@ import { IMenuItem } from './menu.interface'
 
 export const menuItems: IMenuItem[] = [
 	{
-		iconName: 'home',
+		iconPack: 'Ionicons',
+		iconName: 'md-home',
 		path: 'Home'
 	},
 	{
-		iconName: 'menu',
+		iconPack: 'AntDesign',
+		iconName: 'appstore1',
 		path: 'Catalog'
 	},
 	{
+		iconPack: 'AntDesign',
 		iconName: 'heart',
 		path: 'Favorites'
 	},
 	{
-		iconName: 'shopping-cart',
+		iconPack: 'Fontisto',
+		iconName: 'shopping-basket',
 		path: 'Cart'
 	},
 	{
-		iconName: 'user',
+		iconPack: 'MaterialCommunityIcons',
+		iconName: 'face-man',
 		path: 'Profile'
 	}
 ]

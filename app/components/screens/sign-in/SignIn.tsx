@@ -26,7 +26,6 @@ const SignIn: FC = () => {
 	const { navigate } = useTypedNavigation()
 
 	const onSubmit: SubmitHandler<IAuthFormData> = data => {
-		console.log(data)
 		signInSync(data)
 	}
 

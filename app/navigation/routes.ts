@@ -9,8 +9,13 @@ import Category from '@/components/screens/category/Category'
 import Favorites from '@/components/screens/favorites/Favorites'
 import Cart from '@/components/screens/cart/Cart'
 import Product from '@/components/screens/product/Product'
+import Greeting from '@/components/screens/greeting/Greeting'
 
 export const routesAllAccess: IRoute[] = [
+	{
+		name: 'Greeting',
+		component: Greeting
+	},
 	{
 		name: 'Home',
 		component: Home

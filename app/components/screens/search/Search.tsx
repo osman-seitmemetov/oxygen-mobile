@@ -1,6 +1,10 @@
 import React, { FC, useEffect } from 'react'
-import { Text, View } from 'react-native'
-import { HeaderSearch, Layout, Section } from '@/components/ui'
+import { ScrollView, Text, View } from 'react-native'
+import { HeaderSearch, Layout, Loader, Section } from '@/components/ui'
+import {
+	useSafeAreaFrame,
+	useSafeAreaInsets
+} from 'react-native-safe-area-context'
 import Styled from './category.styles'
 import { Ionicons } from '@expo/vector-icons'
 import { useForm } from 'react-hook-form'
@@ -10,12 +14,12 @@ import ProductCard from '@/components/ui/product-card/ProductCard'
 import SkeletonLoader from 'expo-skeleton-loader'
 import ProductsEmpty from '@/components/screens/category/ProductsEmpty'
 import { getFont } from '@/shared/fonts'
-import CustomScrollView from '@/components/ui/layout/custom-scroll-view/CustomScrollView'
-import { useSafeAreaFrame } from 'react-native-safe-area-context'
-import ProductListLoader from '@/components/screens/home/ProductListLoader'
 
-const Category: FC = () => {
-	const { width } = useSafeAreaFrame()
+const Search: FC = () => {
+	const { height } = useSafeAreaFrame()
+	const { top, bottom } = useSafeAreaInsets()
+
+	const itemsHeight = height - 55 - 60 - 15 - top - bottom
 
 	const productsFilterForm = useForm<IProductsFilterFields>({
 		mode: 'onChange'
@@ -45,7 +49,6 @@ const Category: FC = () => {
 	const {
 		category,
 		isCategoryLoading,
-		isProductsLoading,
 		products,
 		setProductsFilterFormValues
 	} = useProductsForCategories()
@@ -54,29 +57,49 @@ const Category: FC = () => {
 		setProductsFilterFormValues(productsFilterFormValues)
 	}, [typeIds, brandIds, sort, priceMin, priceMax, parameters])
 
+	const size = 100
+
 	return (
 		<Layout>
 			<HeaderSearch isHasBack />
 
-			<CustomScrollView>
+			<ScrollView
+				style={{
+					height: itemsHeight - 100,
+					paddingTop: 10,
+					paddingBottom: 10
+				}}
+			>
 				{isCategoryLoading ? (
-					<>
-						<SkeletonLoader>
+					// <Loader />
+					<SkeletonLoader>
+						<SkeletonLoader.Container
+							style={[{ flex: 1, flexDirection: 'row' }]}
+						>
 							<SkeletonLoader.Item
 								style={{
-									width,
-									height: 50,
-									borderRadius: 10,
-									marginRight: 20,
-									marginBottom: 10
+									width: size,
+									height: size,
+									borderRadius: size / 2,
+									marginRight: 20
 								}}
 							/>
-						</SkeletonLoader>
-
-						<Section>
-							<ProductListLoader />
-						</Section>
-					</>
+							<SkeletonLoader.Container
+								style={{ paddingVertical: 10 }}
+							>
+								<SkeletonLoader.Item
+									style={{
+										width: 220,
+										height: 20,
+										marginBottom: 5
+									}}
+								/>
+								<SkeletonLoader.Item
+									style={{ width: 150, height: 20 }}
+								/>
+							</SkeletonLoader.Container>
+						</SkeletonLoader.Container>
+					</SkeletonLoader>
 				) : (
 					category && (
 						<>
@@ -104,10 +127,8 @@ const Category: FC = () => {
 								</Styled.Options>
 							</Section>
 
-							{isCategoryLoading || isProductsLoading ? (
-								<Section>
-									<ProductListLoader />
-								</Section>
+							{isCategoryLoading ? (
+								<Loader />
 							) : products ? (
 								products.length > 0 ? (
 									<Section>
@@ -121,7 +142,7 @@ const Category: FC = () => {
 											{products?.map((product, index) => (
 												<ProductCard
 													index={index}
-													style={{ width: '49%' }}
+													style={{ width: '48%' }}
 													key={product.id}
 													product={product}
 												/>
@@ -143,9 +164,9 @@ const Category: FC = () => {
 						</>
 					)
 				)}
-			</CustomScrollView>
+			</ScrollView>
 		</Layout>
 	)
 }
 
-export default Category
+export default Search

@@ -1,56 +1,36 @@
 import React, { FC } from 'react'
-import { ScrollView, View } from 'react-native'
-import { HeaderSearch, Layout, Section } from '@/components/ui'
-import CategoryItem from '@/components/screens/catalog/category-item/CategoryItem'
-import { useCategories } from '@/components/screens/catalog/useCategories'
-import {
-	useSafeAreaFrame,
-	useSafeAreaInsets
-} from 'react-native-safe-area-context'
+import { View } from 'react-native'
+import { HeaderSearch, Layout } from '@/components/ui'
+import CatalogItem from '@/components/screens/catalog/catalog-item/CatalogItem'
+import { useCatalogItems } from '@/components/screens/catalog/useCatalogItems'
 import CatalogLoader from '@/components/screens/catalog/catalog-loader/CatalogLoader'
+import CustomScrollView from '@/components/ui/layout/custom-scroll-view/CustomScrollView'
 
 const Catalog: FC = () => {
-	const { categories, isCategoriesLoading } = useCategories()
-	const { height } = useSafeAreaFrame()
-	const { top, bottom } = useSafeAreaInsets()
-
-	const itemsHeight = height - 110 - top - bottom
+	const { catalogItems, isCatalogItemsLoading } = useCatalogItems()
 
 	return (
 		<Layout>
 			<View>
 				<HeaderSearch isHasBack />
 
-				<ScrollView
-					style={{
-						height: itemsHeight,
-						paddingTop: 10
-					}}
-				>
-					<Section>
-						{isCategoriesLoading ? (
-							<CatalogLoader />
-						) : (
-							<View
-								style={{
-									flexWrap: 'wrap',
-									justifyContent: 'space-between',
-									flexDirection: 'row'
-								}}
-							>
-								{categories &&
-									categories.map((category, index) => (
-										<CategoryItem
-											key={category.id}
-											category={category}
-											style={{ width: '48%' }}
-											index={index}
-										/>
-									))}
-							</View>
-						)}
-					</Section>
-				</ScrollView>
+				<CustomScrollView>
+					{isCatalogItemsLoading ? (
+						<CatalogLoader />
+					) : (
+						catalogItems &&
+						catalogItems
+							.sort((a, b) =>
+								b.parent.name.localeCompare(a.parent.name)
+							)
+							.map(catalogItem => (
+								<CatalogItem
+									key={catalogItem.parent.id}
+									catalogItem={catalogItem}
+								/>
+							))
+					)}
+				</CustomScrollView>
 			</View>
 		</Layout>
 	)

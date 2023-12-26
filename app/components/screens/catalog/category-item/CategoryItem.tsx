@@ -1,26 +1,34 @@
 import React, { FC } from 'react'
-import { ICategory } from '@/shared/types/category.interface'
 import { getMediaSource } from '@/shared/getMediaSource'
-import Styled from './category-item.styles'
+import Styled, { styles } from './category-item.styles'
 import { Pressable, ViewStyle } from 'react-native'
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 import { useMovieItemAnimation } from '@/hooks/useCardAnimation'
 import Animated from 'react-native-reanimated'
+import { getFont } from '@/shared/fonts'
+import { Image } from 'expo-image'
+import { useSafeAreaFrame } from 'react-native-safe-area-context'
 
 interface CatalogProps {
-	category: ICategory
+	category: {
+		id: number
+		name: string
+		img: string
+		order: number
+	}
 	index: number
 	style?: ViewStyle
 }
 
 const ReanimatedPressable = Animated.createAnimatedComponent(Pressable)
 
-const Catalog: FC<CatalogProps> = ({ category, style, index }) => {
+const CategoryItem: FC<CatalogProps> = ({ category, style, index }) => {
 	const { navigate } = useTypedNavigation()
 	const { styleAnimation } = useMovieItemAnimation(index, style)
+	const { width } = useSafeAreaFrame()
 
 	return (
-		<ReanimatedPressable style={styleAnimation}>
+		<ReanimatedPressable key={category.id} style={styleAnimation}>
 			<Styled.Item
 				onPress={() =>
 					navigate('Category', {
@@ -29,19 +37,25 @@ const Catalog: FC<CatalogProps> = ({ category, style, index }) => {
 				}
 			>
 				{category.img ? (
-					<Styled.Img
-						width={150}
-						height={150}
+					<Image
+						style={[
+							styles.img,
+							{ width: width * 0.28, marginTop: -70 }
+						]}
 						source={getMediaSource(category.img)}
 						alt={category.name}
+						contentFit='contain'
+						transition={1000}
 					/>
 				) : (
 					<Styled.NoImg />
 				)}
-				<Styled.Title>{category.name}</Styled.Title>
+				<Styled.Title style={[getFont('Museo Sans Cyrl 900')]}>
+					{category.name}
+				</Styled.Title>
 			</Styled.Item>
 		</ReanimatedPressable>
 	)
 }
 
-export default Catalog
+export default CategoryItem

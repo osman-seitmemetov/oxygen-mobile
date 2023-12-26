@@ -36,7 +36,6 @@ const Price = styled.View`
 const PriceText = styled.Text`
 	font-size: 22px;
 	color: ${getColor('green')};
-	font-weight: 700;
 `
 
 const PriceDiscount = styled.View`
@@ -49,7 +48,6 @@ const PriceDiscount = styled.View`
 const PriceTextDiscount = styled.Text`
 	font-size: 16px;
 	color: ${getColor('red')};
-	font-weight: 400;
 	text-decoration: line-through;
 `
 

@@ -15,6 +15,7 @@ const CartEmpty: FC = () => {
 			<Image
 				style={{ width: width - 20, height: 300 }}
 				source={require('../../../assets/empty-cart.png')}
+				transition={1000}
 			/>
 
 			<Text

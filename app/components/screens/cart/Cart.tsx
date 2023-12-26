@@ -5,25 +5,19 @@ import Heading from '@/components/ui/layout/heading/Heading'
 import CustomScrollView from '@/components/ui/layout/custom-scroll-view/CustomScrollView'
 import CartItem from './cart-item/CartItem'
 import { useCart } from '@/hooks/useCart'
-import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import CartInfo from '@/components/screens/cart/cart-info/CartInfo'
 import CartLoader from './cart-loader/CartLoader'
 import CartEmpty from '@/components/screens/cart/CartEmpty'
 
 const Cart: FC = () => {
 	const { isCartLoading, cart } = useCart()
-	const { height, width } = useSafeAreaFrame()
 
 	return (
 		<Layout>
 			<View>
 				<Heading title='Корзина' />
 
-				<CustomScrollView
-					style={{
-						height: height - 55 - 100
-					}}
-				>
+				<CustomScrollView>
 					{isCartLoading ? (
 						<CartLoader />
 					) : cart && cart.items.length > 0 ? (

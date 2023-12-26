@@ -12,7 +12,6 @@ const ProductsEmpty: FC = () => {
 			<Image
 				style={{ width: width - 20, height: 230 }}
 				source={require('../../../assets/not-found.png')}
-				transition={1000}
 			/>
 
 			<Text

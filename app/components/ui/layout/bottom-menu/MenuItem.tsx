@@ -1,6 +1,12 @@
 import { FC } from 'react'
 import { IMenuItem, TypeNavigate } from './menu.interface'
-import { Feather } from '@expo/vector-icons'
+import {
+	AntDesign,
+	Feather,
+	Fontisto,
+	Ionicons,
+	MaterialCommunityIcons
+} from '@expo/vector-icons'
 import { getColor } from '@/styles/colors'
 import Styled from './menu.styles'
 import { useAuth } from '@/hooks/useAuth'
@@ -20,11 +26,50 @@ const MenuItem: FC<MenuItemProps> = ({ currentRoute, item, nav }) => {
 
 	return (
 		<Styled.MenuItem onPress={() => nav(screen)}>
-			<Feather
-				name={item.iconName}
-				size={22}
-				color={isActive ? getColor('main') : getColor('mystic')}
-			/>
+			{item.iconPack === 'Feather' && (
+				<Feather
+					//@ts-ignore
+					name={item.iconName}
+					size={22}
+					color={isActive ? getColor('main') : getColor('mystic')}
+				/>
+			)}
+
+			{item.iconPack === 'Ionicons' && (
+				<Ionicons
+					//@ts-ignore
+					name={item.iconName}
+					size={22}
+					color={isActive ? getColor('main') : getColor('mystic')}
+				/>
+			)}
+
+			{item.iconPack === 'AntDesign' && (
+				<AntDesign
+					//@ts-ignore
+					name={item.iconName}
+					size={22}
+					color={isActive ? getColor('main') : getColor('mystic')}
+				/>
+			)}
+
+			{item.iconPack === 'Fontisto' && (
+				<Fontisto
+					//@ts-ignore
+					name={item.iconName}
+					size={22}
+					color={isActive ? getColor('main') : getColor('mystic')}
+				/>
+			)}
+
+			{item.iconPack === 'MaterialCommunityIcons' && (
+				<MaterialCommunityIcons
+					//@ts-ignore
+					name={item.iconName}
+					size={26}
+					color={isActive ? getColor('main') : getColor('mystic')}
+				/>
+			)}
 		</Styled.MenuItem>
 	)
 }

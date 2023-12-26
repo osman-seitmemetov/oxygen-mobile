@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { ScrollView, View } from 'react-native'
+import { View } from 'react-native'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import SignUpForm from './SignUpForm'
 import { useSignUp } from './useSignUp'
@@ -14,6 +14,7 @@ import {
 	PrimaryButton,
 	SecondaryButton
 } from '@/components/ui'
+import CustomScrollView from '@/components/ui/layout/custom-scroll-view/CustomScrollView'
 
 const SignUp: FC = () => {
 	const { handleSubmit, control, reset, clearErrors } =
@@ -27,7 +28,6 @@ const SignUp: FC = () => {
 
 	const onSubmit: SubmitHandler<SignUpFormData> = data => {
 		signUpSync(data)
-		console.log(data)
 	}
 
 	return (
@@ -35,9 +35,8 @@ const SignUp: FC = () => {
 			<Heading title='Регистрация' />
 
 			<DismissKeyboard>
-				<ScrollView
+				<CustomScrollView
 					style={{ paddingHorizontal: 10, marginBottom: 10 }}
-					showsVerticalScrollIndicator={false}
 				>
 					<View>{isLoading ? <Loader /> : <></>}</View>
 
@@ -51,7 +50,7 @@ const SignUp: FC = () => {
 					<SecondaryButton onPress={() => navigate('SignIn')}>
 						Войти
 					</SecondaryButton>
-				</ScrollView>
+				</CustomScrollView>
 			</DismissKeyboard>
 		</Layout>
 	)

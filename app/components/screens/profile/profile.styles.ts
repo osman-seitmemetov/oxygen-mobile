@@ -15,4 +15,47 @@ const LogOutText = styled.Text`
 	margin-left: 10px;
 `
 
-export default { LogOut, LogOutText }
+const ImageWrapper = styled.View`
+	width: 90px;
+	height: 90px;
+	border-radius: 100px;
+	background-color: ${getColor('mineShaft')};
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+`
+
+const Person = styled.View`
+	flex-direction: row;
+	align-items: center;
+`
+
+const Name = styled.View`
+	margin-left: 15px;
+`
+
+const Firstname = styled.Text`
+	font-size: 22px;
+`
+
+const Lastname = styled.Text`
+	font-size: 22px;
+`
+
+const img = {
+	width: 70,
+	height: 70,
+	backgroundColor: getColor('mineShaft')
+}
+
+export const styles = { img }
+
+export default {
+	LogOut,
+	LogOutText,
+	ImageWrapper,
+	Person,
+	Name,
+	Firstname,
+	Lastname
+}

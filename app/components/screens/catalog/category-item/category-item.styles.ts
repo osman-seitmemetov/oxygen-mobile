@@ -2,16 +2,20 @@ import styled from 'styled-components/native'
 import { getColor } from '@/styles/colors'
 
 const Item = styled.Pressable`
-	//width: 50%;
 	align-items: center;
-	margin-bottom: 15px;
+	margin-top: 25px;
+	background-color: #2f2f2f;
+	border-radius: 10px;
+	padding: 15px 0;
+	flex: 1;
+	justify-content: space-between;
 `
 
 const Title = styled.Text`
-	margin-top: 5px;
-	font-size: 16px;
-	font-weight: 700;
+	font-size: 12px;
 	text-align: center;
+	padding: 0 5px;
+	margin-top: -15px;
 `
 
 const Img = styled.Image`
@@ -26,5 +30,12 @@ const NoImg = styled.View`
 	border-radius: 10px;
 	background-color: ${getColor('gallery')};
 `
+
+const img = {
+	borderRadius: 10,
+	height: 150
+}
+
+export const styles = { img }
 
 export default { Item, Title, Img, NoImg }

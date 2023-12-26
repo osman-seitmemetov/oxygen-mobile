@@ -1,14 +1,9 @@
 import styled from 'styled-components/native'
-import { ITEM_SIZE } from './carousel-item.constants'
 import { getColor } from '@/styles/colors'
 
 const Banner = styled.View`
 	border-radius: 10px;
-	overflow: hidden;
-	box-shadow: 0 4px 10px rgba(115, 121, 140, 0.15);
-	//height: 280px;
-	width: ${ITEM_SIZE}px;
-	margin-right: 10px;
+	margin: 0 5px;
 `
 
 const USP = styled.View`
@@ -48,8 +43,6 @@ const Image = styled.Image`
 `
 
 const image = {
-	marginRight: 10,
-	width: '100%',
 	height: 70,
 	borderRadius: 10,
 	backgroundColor: getColor('mineShaft')

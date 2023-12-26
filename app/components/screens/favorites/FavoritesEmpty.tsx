@@ -1,12 +1,9 @@
 import React, { FC } from 'react'
 import { Text, View } from 'react-native'
-import { useSafeAreaFrame } from 'react-native-safe-area-context'
 import { Image } from 'expo-image'
 import { getFont } from '@/shared/fonts'
 
 const FavoritesEmpty: FC = () => {
-	const { width } = useSafeAreaFrame()
-
 	return (
 		<View
 			style={{
@@ -18,6 +15,7 @@ const FavoritesEmpty: FC = () => {
 			<Image
 				style={{ width: 320, height: 390 }}
 				source={require('../../../assets/wishlist-empty.png')}
+				transition={1000}
 			/>
 
 			<Text

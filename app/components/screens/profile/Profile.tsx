@@ -16,22 +16,21 @@ import {
 } from '@/components/ui'
 import { genders } from '@/shared/genders'
 import { validEmail } from '@/shared/validEmail'
-import SectionLink from '@/components/ui/layout/section/section-link/SectionLink'
 import { getColor } from '@/styles/colors'
-import Styled from './profile.styles'
+import Styled, { styles } from './profile.styles'
 import { useProfile } from './useProfile'
 import CustomScrollView from '@/components/ui/layout/custom-scroll-view/CustomScrollView'
+import { Image } from 'expo-image'
+import { getFont } from '@/shared/fonts'
 
 const Profile: FC = () => {
 	const { setUser, user } = useAuth()
 
-	const { handleSubmit, control, reset, setValue } = useForm<ProfileFormData>(
-		{
-			mode: 'onChange'
-		}
-	)
+	const { handleSubmit, control, setValue } = useForm<ProfileFormData>({
+		mode: 'onChange'
+	})
 
-	const { isLoading, onSubmit } = useProfile(setValue)
+	const { onSubmit } = useProfile(setValue)
 
 	const logout = () => {
 		AuthService.logout().then(() => setUser(null))
@@ -39,31 +38,35 @@ const Profile: FC = () => {
 
 	return (
 		<Layout>
-			<Heading title={`${user?.firstname} ${user?.lastname}`} />
+			<Heading title='Профиль' />
 
 			<CustomScrollView>
-				<Section title='Личность'>
-					<FieldGroup label='Имя'>
-						<Field<ProfileFormData>
-							control={control}
-							name='firstname'
-							placeholder='Введите имя'
-							rules={{
-								required: 'Это поле обязательное'
-							}}
-						/>
-					</FieldGroup>
+				<Section>
+					<Styled.Person>
+						<Styled.ImageWrapper>
+							<Image
+								style={[styles.img]}
+								source={require('../../../assets/avatar.png')}
+								alt={'Avatar'}
+								contentFit='contain'
+								transition={1000}
+							/>
+						</Styled.ImageWrapper>
 
-					<FieldGroup label='Фамилия'>
-						<Field<ProfileFormData>
-							control={control}
-							name='lastname'
-							placeholder='Введите фамилию'
-							rules={{
-								required: 'Это поле обязательное'
-							}}
-						/>
-					</FieldGroup>
+						<Styled.Name>
+							<Styled.Firstname
+								style={getFont('Museo Sans Cyrl 900')}
+							>
+								{user?.firstname}
+							</Styled.Firstname>
+
+							<Styled.Lastname
+								style={getFont('Museo Sans Cyrl 900')}
+							>
+								{user?.lastname}
+							</Styled.Lastname>
+						</Styled.Name>
+					</Styled.Person>
 				</Section>
 
 				<Section title='Учётные данные'>
@@ -114,9 +117,9 @@ const Profile: FC = () => {
 					</PrimaryButton>
 				</Section>
 
-				<Section title='Приложение'>
-					<SectionLink title='Тема приложения' page='ProfileTheme' />
-				</Section>
+				{/*<Section title='Приложение'>*/}
+				{/*	<SectionLink title='Тема приложения' page='ProfileTheme' />*/}
+				{/*</Section>*/}
 
 				<Section title='Аккаунт'>
 					<Styled.LogOut onPress={logout}>

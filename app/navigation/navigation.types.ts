@@ -4,6 +4,7 @@ export type TypeRootStackParamList = {
 	SignIn: undefined
 	SignUp: undefined
 	Home: undefined
+	Greeting: undefined
 	Screen404: undefined
 	Favorites: undefined
 	Cart: undefined
